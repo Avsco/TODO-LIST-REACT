@@ -3,8 +3,14 @@ import { TodoPage } from "../pages/TodosPage";
 import { PokemonPage } from "../pages/PokemonPage";
 import { HomePage } from "../pages/HomePage";
 import { MainLayout } from "../layouts/main";
+import { LoginPage } from "../pages/LoginPage";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 export const router = createBrowserRouter([
+    {
+      path: '/login',
+      element: <LoginPage/>
+    },
     {
       path: "/",
       element: <MainLayout/>,
@@ -15,12 +21,17 @@ export const router = createBrowserRouter([
         },
         {
           path: "todo",
-          element: <TodoPage/>
+          element: <ProtectedRoutes>
+            <TodoPage/>
+          </ProtectedRoutes>
         },
         {
           path: "pokemon",
-          element: <PokemonPage/>
+          element: <ProtectedRoutes>
+            <PokemonPage/>
+          </ProtectedRoutes>
         },
+
       ]
     },
     

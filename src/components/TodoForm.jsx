@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useStoreTodo } from '../store/todos';
 import './TodoForm.css'
 
 export const TodoForm = ({ onCreate }) => {
+  const createTodo = useStoreTodo((state) => state.createTodo)
+
   const[formData, setFormData] = useState({
     text: 'asf',
     priority: 1,
@@ -20,7 +23,7 @@ export const TodoForm = ({ onCreate }) => {
   <form 
     onSubmit={(e) => {
       e.preventDefault()
-      onCreate(formData)
+      createTodo(formData)
     }} 
     className="styled-form">
     <label htmlFor='text'>
